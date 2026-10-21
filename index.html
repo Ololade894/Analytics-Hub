@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analytics Hub — Operations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar" id="sidebar">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <div>
+            <strong>Analytics Hub</strong>
+            <span>Operations control plane</span>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <button class="nav-item is-active" data-view="dashboard">
+            Command board
+          </button>
+          <button class="nav-item" data-view="incidents">Incidents</button>
+          <button class="nav-item" data-view="slo">
+            SLO &amp; error budget
+          </button>
+          <button class="nav-item" data-view="catalog">Widget catalog</button>
+        </nav>
+
+        <section class="sidebar-block">
+          <h2>Role</h2>
+          <label class="sr-only" for="roleSelect">Operations role</label>
+          <select id="roleSelect"></select>
+          <p class="role-blurb" id="roleBlurb"></p>
+        </section>
+
+        <section class="sidebar-block">
+          <h2>Environment</h2>
+          <div class="chip-row" id="envChips"></div>
+        </section>
+
+        <div class="sidebar-foot">
+          <div class="live-pill" id="livePill">
+            <span class="pulse"></span>
+            Live stream
+          </div>
+          <p class="muted" id="tickStamp">Waiting for first tick…</p>
+        </div>
+      </aside>
+
+      <div class="main">
+        <header class="topbar">
+          <div>
+            <h1 id="pageTitle">Command board</h1>
+            <p class="subtitle" id="pageSubtitle">
+              Realtime service health for the selected role.
+            </p>
+          </div>
+          <div class="top-actions">
+            <button class="ghost" id="editToggle" type="button">
+              Customize
+            </button>
+            <button class="ghost" id="resetLayout" type="button">
+              Reset layout
+            </button>
+            <button
+              class="icon-btn"
+              id="themeToggle"
+              type="button"
+              aria-label="Toggle dark mode"
+            >
+              Theme
+            </button>
+          </div>
+        </header>
+
+        <div class="edit-banner hidden" id="editBanner">
+          Drag widgets to reorder. Use size controls and the catalog to change
+          this role’s board. Layout is saved per role in this browser.
+        </div>
+
+        <section class="page is-active" id="view-dashboard">
+          <div class="kpi-strip" id="kpiStrip"></div>
+          <div class="board" id="board"></div>
+        </section>
+
+        <section class="page" id="view-incidents">
+          <div class="panel">
+            <div class="panel-head">
+              <h2>Active incidents</h2>
+              <span class="badge" id="incidentCount">0</span>
+            </div>
+            <div id="incidentTable"></div>
+          </div>
+        </section>
+
+        <section class="page" id="view-slo">
+          <div class="slo-grid" id="sloGrid"></div>
+        </section>
+
+        <section class="page" id="view-catalog">
+          <p class="lede">
+            Widgets available to the current role. Add them while Customize is
+            on.
+          </p>
+          <div class="catalog" id="catalog"></div>
+        </section>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
